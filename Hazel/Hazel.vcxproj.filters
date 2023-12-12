@@ -19,6 +19,14 @@
     <ClInclude Include="src\Hazel\Log.h">
       <Filter>Hazel</Filter>
     </ClInclude>
+    <ClInclude Include="src\Hazel\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Hazel\Events\Event.h" />
+    <ClInclude Include="src\Hazel\Events\KeyEvent.h" />
+    <ClInclude Include="src\Hazel\Events\MouseEvent.h" />
+    <ClInclude Include="src\Hazel\Debug\Instrumentor.h" />
+    <ClInclude Include="src\Hazel\Core\PlatformDetection.h" />
+    <ClInclude Include="src\Hazel\Core\Assert.h" />
+    <ClInclude Include="src\Hazel\Core\Base.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hazel\Application.cpp">
