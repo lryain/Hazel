@@ -1,3 +1,4 @@
+include "Dependencies.lua"
 workspace "Hazel"
 	architecture "x64"
 
@@ -8,6 +9,9 @@ workspace "Hazel"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+IncludeDir = {}
+IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
+include "Hazel/vendor/GLFW"
 
 project "Hazel"
 	location "Hazel"
@@ -17,6 +21,9 @@ project "Hazel"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "hzpch.h"
+	pchsource "Hazel/src/hzpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -25,13 +32,19 @@ project "Hazel"
 
 	includedirs{
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/src"
+		"%{prj.name}/src",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
-		systemversion "10.0.22621.0"
+		systemversion "latest"
 
 		defines
 		{
@@ -82,7 +95,7 @@ project "Sandbox"
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
-		systemversion "10.0.22621.0"
+		systemversion "latest"
 
 		defines
 		{
@@ -100,3 +113,7 @@ project "Sandbox"
 		filter "configurations:Dist"
 			defines "HZ_DIST"
 			symbols "On"
+
+group "Dependencies"
+	include "Hazel/vendor/GLFW"
+group ""
