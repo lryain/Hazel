@@ -17,6 +17,9 @@ include "Hazel/vendor/GLAD"
 IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
 include "Hazel/vendor/GLFW"
 
+IncludeDir["IMGUI"] = "Hazel/vendor/IMGUI/include"
+include "Hazel/vendor/IMGUI"
+
 project "Hazel"
 	location "Hazel"
 	kind "SharedLib"
@@ -38,13 +41,15 @@ project "Hazel"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.IMGUI}",
 	}
 
 	links{
 		"GLFW",
 		"GLAD",
-		"opengl32.lib"
+		"IMGUI",
+		"opengl32.lib",
 	}
 
 	filter "system:windows"
