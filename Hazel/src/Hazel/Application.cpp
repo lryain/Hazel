@@ -2,7 +2,8 @@
 #include "Application.h"
 #include "Events\ApplicationEvent.h"
 #include "Hazel\Log.h"
-#include "GLFW\glfw3.h"
+
+#include <glad\glad.h>
 
 namespace Hazel {
 
@@ -12,6 +13,9 @@ namespace Hazel {
 	Application::Application() {
 		m_Window = Window::Create();
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		unsigned int id;
+		glGenVertexArrays(1, &id);
 	}
 	
 	Application::~Application() {
@@ -53,8 +57,6 @@ namespace Hazel {
 		
 		while (m_Running)
 		{
-			glClearColor(1, 0, 1, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
 
 			// 遍历层 进行更新处理
 			for (Layer* layer: m_LayerStack)
