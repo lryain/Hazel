@@ -10,8 +10,15 @@ namespace Hazel {
 	// 定义一个宏来简化事件绑定函数
 	#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
-	Application::Application() {
-		m_Window = Window::Create();
+	Application* Application::s_Instance = nullptr;
+
+	Application::Application() 
+	{
+		HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
+
+		s_Instance = this;
+
+		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		unsigned int id;
@@ -24,10 +31,12 @@ namespace Hazel {
 
 	void Application::PushLayer(Layer* layer) {
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer) {
 		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)
@@ -57,6 +66,8 @@ namespace Hazel {
 		
 		while (m_Running)
 		{
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 
 			// 遍历层 进行更新处理
 			for (Layer* layer: m_LayerStack)

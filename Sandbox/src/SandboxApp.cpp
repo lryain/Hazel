@@ -27,7 +27,9 @@ class Sandbox : public Hazel::Application
 public:
 	Sandbox()
 	{
-
+		// 放入层
+		PushLayer(new ExampleLayer());
+		PushOverlay(new Hazel::ImGuiLayer());
 	}
 
 	~Sandbox()

@@ -17,7 +17,7 @@ include "Hazel/vendor/GLAD"
 IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
 include "Hazel/vendor/GLFW"
 
-IncludeDir["IMGUI"] = "Hazel/vendor/IMGUI/include"
+IncludeDir["IMGUI"] = "Hazel/vendor/IMGUI"
 include "Hazel/vendor/IMGUI"
 
 project "Hazel"
