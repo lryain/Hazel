@@ -46,7 +46,7 @@ namespace Hazel {
 		// 绑定窗口关闭回调 处理函数
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		HZ_CORE_INFO("{0}", e);
+		//HZ_CORE_INFO("{0}", e);
 
 		// 遍历层 进行事件处理
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
@@ -75,9 +75,6 @@ namespace Hazel {
 			{
 				layer->OnUpdate();
 			}
-
-			/*auto [x, y] = Input::GetMousePosition();
-			HZ_CORE_TRACE("{0}, {1}", x, y);*/
 
 			m_Window->OnUpdate();
 		}
