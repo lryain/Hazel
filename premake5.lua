@@ -12,15 +12,15 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLAD"] = "Hazel/vendor/GLAD/include"
-include "Hazel/vendor/GLAD"
-
 IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
-include "Hazel/vendor/GLFW"
-
 IncludeDir["IMGUI"] = "Hazel/vendor/IMGUI"
+IncludeDir["GLM"] = "Hazel/vendor/GLM"
+
+
+include "Hazel/vendor/GLAD"
+include "Hazel/vendor/GLFW"
 include "Hazel/vendor/IMGUI"
 
-IncludeDir["GLM"] = "Hazel/vendor/GLM"
 
 project "Hazel"
 	location "Hazel"
@@ -106,6 +106,7 @@ project "Sandbox"
 	includedirs{
 		"Hazel/src",
 		"Hazel/vendor/spdlog/include",
+		"Hazel/vendor",
 		"%{IncludeDir.GLM}",
 	}
 

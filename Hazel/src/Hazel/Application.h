@@ -7,6 +7,8 @@
 #include "Events\Event.h"
 #include "Hazel\Events\ApplicationEvent.h"
 
+#include "Hazel\ImGui\ImGuiLayer.h"
+
 namespace Hazel {
 	//class __declspec(dllexport) Application
 
@@ -39,6 +41,8 @@ namespace Hazel {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;
+		//std::unique_ptr<ImGuiLayer> m_ImGuiLayer;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 
 		// 层
