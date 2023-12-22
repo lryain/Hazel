@@ -23,12 +23,12 @@ public:
 			HZ_TRACE("Tab key is pressed!");
 	}
 
-	//virtual void OnImGuiRender() override
-	//{
-	//	ImGui::Begin("Test");
-	//	ImGui::Text("Hello World");
-	//	ImGui::End();
-	//}
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
 
 	void OnEvent(Hazel::Event& event) override
 	{

@@ -87,6 +87,11 @@ namespace Hazel {
 	void ImGuiLayer::OnImGuiRender() {
 		static bool show = true;
 		ImGui::ShowDemoWindow(&show);
+
+		// 在Hazel中使用一下这些方法，才会链接到DLL中 不行！！！
+		/*ImGui::Begin("");
+		ImGui::Text("Hello World");
+		ImGui::End();*/
 	}
 
 }
